@@ -11,19 +11,29 @@ exports.create = (req, res) => {
 
   // Create a Tutorial
   const iphost = new Iphost({
-    host_name: req.body.host_name,
-    ip_version: req.body.ip_version,
-    address: req.body.address,
-    type: req.body.type,
-    endipadd: req.body.endipadd,
-    groups: req.body.groups,
-    ipadd: req.body.ipadd,
-    ipadd_List: req.body.ipadd_List,
-    iphost_type: req.body.iphost_type,
-    ipversion: req.body.ipversion,
-    name: req.body.name,
-    startipadd: req.body.startipadd,
-    subnet: req.body.subnet,
+    // host_name: req.body.host_name,
+    // ip_version: req.body.ip_version,
+    // address: req.body.address,
+    // type: req.body.type,
+    // endipadd: req.body.endipadd,
+    // groups: req.body.groups,
+    // ipadd: req.body.ipadd,
+    // ipadd_List: req.body.ipadd_List,
+    // iphost_type: req.body.iphost_type,
+    // ipversion: req.body.ipversion,
+    // name: req.body.name,
+    // startipadd: req.body.startipadd,
+    // subnet: req.body.subnet,
+
+    "name":req.body.name,
+    "ipversion":req.body.ipversion,
+    "type":req.body.type,
+    "ipaddress":req.body.ipaddress,
+    "subnet":req.body.subnet,
+    "startip":req.body.startip,
+    "endip":req.body.endip,
+    "ipaddresslist":req.body.ipaddresslist,
+    "iphostgroup":req.body.iphostgroup
   });
 
   // Save Iphost in the database

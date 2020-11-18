@@ -1,15 +1,15 @@
 module.exports = (mongoose) => {
   var schema = mongoose.Schema(
     {
-      endipadd: String,
-      groups: [String] ,
-      ipadd: String,
-      ipadd_List: String,
-      iphost_type: String,
-      ipversion: String,
-      name: String,
-      startipadd: String,
-      subnet: String
+      "name":String,
+      "ipversion":String,
+      "type":String ,//network,ipaddress,iprange,iplisit
+      "ipaddress":String,
+      "subnet":String,
+      "startip":String,
+      "endip":String,
+      "ipaddresslist":[String],
+      "iphostgroup":[String]
     },
     // { timestamps: true }
   );

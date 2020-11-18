@@ -10,8 +10,12 @@ var corsOptions = {
 var tutorialRouter = require('./app/routes/turorial.routes');
 var iphostRouter = require('./app/routes/iphost.routes');
 var machostRouter = require('./app/routes/machost.routes');
+var scheduleRouter = require('./app/routes/schedule.routes');
+var fqdnRouter = require('./app/routes/fqdn.routes');
+var zoneRouter = require('./app/routes/zone.routes');
+var fqdnlistRouter = require('./app/routes/fqdnlist.routes');
 
-app.use(cors(corsOptions));
+app.use(cors());
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
@@ -38,6 +42,10 @@ app.get("/", (req, res) => {
 app.use('/api/tutorials', tutorialRouter);
 app.use('/api/iphosts', iphostRouter);
 app.use('/api/machosts',machostRouter );
+app.use('/api/schedule',scheduleRouter );
+app.use('/api/fqdn',fqdnRouter );
+app.use('/api/zones',zoneRouter );
+app.use('/api/fqdnlist',fqdnlistRouter );
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

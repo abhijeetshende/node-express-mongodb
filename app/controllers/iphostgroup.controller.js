@@ -1,49 +1,53 @@
 const db = require("../models");
-const Fqdnhost = db.fqdnhost;
+const IphostGroup = db.iphostsgroup;
 
 // Create and Save a new Tutorial
 exports.create = (req, res) => {
   // Validate request
   if (!req.body.name) {
-    res.status(400).send({ message: "name can not be empty!" });
+    res.status(400).send({ code: "IPHOST" });
     return;
   }
+
   // Create a Tutorial
-  const fqdnhost = new Fqdnhost({
-    name:req.body.name,
-    fqdn:req.body.fqdn,
-    fqdn_host_groups:req.body.fqdn_host_groups
+  const iphost = new IphostGroup({
+    name: req.body.name,
+    version: req.body.version,
+    description: req.body.description,
+    type: req.body.type,
+    ip_hosts: req.body.ip_address,
+  
   });
 
-  // Save schedule in the database
-  fqdnhost
-    .save(fqdnhost)
+  // Save Iphost in the database
+  iphost
+    .save(iphost)
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the fqdnhost.",
+          err.message || "Some error occurred while creating the IphostGroup.",
       });
     });
 };
 
-// Retrieve all Iphost from the database.
+// Retrieve all IphoIphostGroupst from the database.
 exports.findAll = (req, res) => {
   const name = req.query.name;
   var condition = name
     ? { name: { $regex: new RegExp(name), $options: "i" } }
     : {};
 
-    Fqdnhost.find(condition)
+    IphostGroup.find(condition)
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving Fqdnhost.",
+          err.message || "Some error occurred while retrieving IphostGroup.",
       });
     });
 };
@@ -52,16 +56,16 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  Fqdnhost.findById(id)
+  IphostGroup.findById(id)
     .then((data) => {
       if (!data)
-        res.status(404).send({ message: "Not found Fqdnhost with id " + id });
+        res.status(404).send({ message: "Not found IphostGroup with id " + id });
       else res.send(data);
     })
     .catch((err) => {
       res
         .status(500)
-        .send({ message: "Error retrieving Fqdnhost with id=" + id });
+        .send({ message: "Error retrieving IphostGroup with id=" + id });
     });
 };
 
@@ -75,17 +79,17 @@ exports.update = (req, res) => {
 
   const id = req.params.id;
 
-  Fqdnhost.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+  IphostGroup.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
     .then((data) => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot update Fqdnhost with id=${id}. Maybe Fqdnhost was not found!`,
+          message: `Cannot update IphostGroup with id=${id}. Maybe IphostGroup was not found!`,
         });
-      } else res.send({ message: "Fqdnhost was updated successfully." });
+      } else res.send({ message: "IphostGroup was updated successfully." });
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error updating Fqdnhost with id=" + id,
+        message: "Error updating IphostGroup with id=" + id,
       });
     });
 };
@@ -94,37 +98,37 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
   const id = req.params.id;
 
-  Fqdnhost.findByIdAndRemove(id, { useFindAndModify: false })
+  IphostGroup.findByIdAndRemove(id, { useFindAndModify: false })
     .then((data) => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot delete Fqdnhost with id=${id}. Maybe Fqdnhost was not found!`,
+          message: `Cannot delete IphostGroup with id=${id}. Maybe IphostGroup was not found!`,
         });
       } else {
         res.send({
-          message: "Fqdnhost was deleted successfully!",
+          message: "IphostGroup was deleted successfully!",
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Could not delete Fqdnhost with id=" + id,
+        message: "Could not delete IphostGroup with id=" + id,
       });
     });
 };
 
 // Delete all Tutorials from the database.
 exports.deleteAll = (req, res) => {
-  Fqdnhost.deleteMany({})
+  IphostGroup.deleteMany({})
     .then((data) => {
       res.send({
-        message: `${data.deletedCount} Fqdnhost were deleted successfully!`,
+        message: `${data.deletedCount} IphostGroup were deleted successfully!`,
       });
     })
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while removing all Fqdnhost.",
+          err.message || "Some error occurred while removing all IphostGroup.",
       });
     });
 };

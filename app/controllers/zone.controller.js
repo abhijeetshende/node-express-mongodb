@@ -50,6 +50,7 @@ exports.findAll = (req, res) => {
 
     Zone.find(condition)
     .then((data) => {
+      
       res.send(data);
     })
     .catch((err) => {

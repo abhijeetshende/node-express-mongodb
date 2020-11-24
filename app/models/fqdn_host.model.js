@@ -1,9 +1,12 @@
 module.exports = (mongoose) => {
   var schema = mongoose.Schema(
     {
-      "host_name":String,
+      // "host_name":String,
+      // "fqdn":String,
+      // "fqdnHostGroup":[String]
+      "name":String,
       "fqdn":String,
-      "fqdnHostGroup":[String]
+      "fqdn_host_groups": [String],
     },
     // { timestamps: true }
   );

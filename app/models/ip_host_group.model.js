@@ -1,8 +1,10 @@
 module.exports = (mongoose) => {
   var schema = mongoose.Schema(
     {
+
       name: String,
-      fqdn_hosts: [String],
+      version: String,
+      ip_hosts: [String],
       description: String,
     }
     // { timestamps: true }
@@ -14,6 +16,6 @@ module.exports = (mongoose) => {
     return object;
   });
 
-  const FqdnHostList = mongoose.model("fqdnhostlist", schema);
-  return FqdnHostList;
+  const IpHostGroup = mongoose.model("iphostgroup", schema);
+  return IpHostGroup;
 };

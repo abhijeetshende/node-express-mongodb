@@ -5,35 +5,21 @@ const Iphost = db.iphosts;
 exports.create = (req, res) => {
   // Validate request
   if (!req.body.name) {
-    res.status(400).send({ message: "hostname can not be empty!" });
+    res.status(400).send({ message: "name can not be empty!" });
     return;
   }
 
   // Create a Tutorial
   const iphost = new Iphost({
-    // host_name: req.body.host_name,
-    // ip_version: req.body.ip_version,
-    // address: req.body.address,
-    // type: req.body.type,
-    // endipadd: req.body.endipadd,
-    // groups: req.body.groups,
-    // ipadd: req.body.ipadd,
-    // ipadd_List: req.body.ipadd_List,
-    // iphost_type: req.body.iphost_type,
-    // ipversion: req.body.ipversion,
-    // name: req.body.name,
-    // startipadd: req.body.startipadd,
-    // subnet: req.body.subnet,
-
-    "name":req.body.name,
-    "ipversion":req.body.ipversion,
-    "type":req.body.type,
-    "ipaddress":req.body.ipaddress,
-    "subnet":req.body.subnet,
-    "startip":req.body.startip,
-    "endip":req.body.endip,
-    "ipaddresslist":req.body.ipaddresslist,
-    "iphostgroup":req.body.iphostgroup
+    name: req.body.name,
+    version: req.body.version,
+    type: req.body.type,
+    ip_address: req.body.ip_address,
+    subnet: req.body.subnet,
+    start_ip_address: req.body.start_ip_address,
+    end_ip_address: req.body.end_ip_address,
+    ip_address_List: req.body.ip_address_List,
+    ip_host_group: req.body.ip_host_group,
   });
 
   // Save Iphost in the database
@@ -52,9 +38,9 @@ exports.create = (req, res) => {
 
 // Retrieve all Iphost from the database.
 exports.findAll = (req, res) => {
-  const host_name = req.query.host_name;
-  var condition = host_name
-    ? { host_name: { $regex: new RegExp(host_name), $options: "i" } }
+  const name = req.query.name;
+  var condition = name
+    ? { name: { $regex: new RegExp(name), $options: "i" } }
     : {};
 
   Iphost.find(condition)
@@ -64,7 +50,7 @@ exports.findAll = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving tutorials.",
+          err.message || "Some error occurred while retrieving Iphost.",
       });
     });
 };
@@ -76,13 +62,13 @@ exports.findOne = (req, res) => {
   Iphost.findById(id)
     .then((data) => {
       if (!data)
-        res.status(404).send({ message: "Not found Tutorial with id " + id });
+        res.status(404).send({ message: "Not found Iphost with id " + id });
       else res.send(data);
     })
     .catch((err) => {
       res
         .status(500)
-        .send({ message: "Error retrieving Tutorial with id=" + id });
+        .send({ message: "Error retrieving Iphost with id=" + id });
     });
 };
 

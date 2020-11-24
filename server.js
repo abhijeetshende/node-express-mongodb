@@ -9,6 +9,7 @@ var corsOptions = {
 };
 var tutorialRouter = require('./app/routes/turorial.routes');
 var iphostRouter = require('./app/routes/iphost.routes');
+var iphostGroupRouter = require('./app/routes/iphostgroup.routes');
 var machostRouter = require('./app/routes/machost.routes');
 var scheduleRouter = require('./app/routes/schedule.routes');
 var fqdnRouter = require('./app/routes/fqdn.routes');
@@ -41,6 +42,7 @@ app.get("/", (req, res) => {
 //tutorial
 app.use('/api/tutorials', tutorialRouter);
 app.use('/api/iphosts', iphostRouter);
+app.use('/api/iphostgroup', iphostGroupRouter);
 app.use('/api/machosts',machostRouter );
 app.use('/api/schedule',scheduleRouter );
 app.use('/api/fqdn',fqdnRouter );

@@ -4,16 +4,16 @@ const Fqdnhostlist = db.fqdnhostlist;
 // Create and Save a new Tutorial
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body. host_name) {
+  if (!req.body.name ) {
     res.status(400).send({ message: "hostname can not be empty!" });
     return;
   }
 
   // Create a Tutorial
   const fqdnhostlist = new Fqdnhostlist({
-    host_name:req.body.host_name,
-    fqdn:req.body.fqdn,
-    fqdn_hosts:req.body.fqdn_hosts
+      name: req.body.name,
+      fqdn_hosts: req.body.fqdn_hosts,
+      description: req.body.description
   });
 
   // Save schedule in the database

@@ -2,6 +2,7 @@ const express                = require('express');
 const router                 = express.Router();
 const tutorialController      = require('./turorial.routes');
 const iphostController      = require('./iphost.routes');
+const iphostGroupController      = require('./iphostgroup.routes');
 const machostController      = require('./machost.routes');
 const scheduleController      = require('./schedule.routes');
 const fqdnController      = require('./fqdn.routes');
@@ -10,6 +11,7 @@ const fqdnListController      = require('./fqdnlist.routes');
 
 router.use('/tutorial',tutorialController);
 router.use('/iphost',iphostController);
+router.use('/iphostgroup',iphostGroupController);
 router.use('/machost',machostController);
 router.use('/schedule',scheduleController);
 router.use('/fqdn',fqdnController);
